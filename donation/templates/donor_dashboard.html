@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #0044cc;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-list li {
+    display: inline;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    background-color: #cc0000;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #a30000;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.donor-info h2, .actions h2 {
+    margin-top: 0;
+}
+
+.action-list {
+    list-style: none;
+    padding: 0;
+}
+
+.action-list li {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #0044cc;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+</style>
+
+<header>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'organ_search' %}">Search Organs</a></li>
+            <li><a href="{% url 'donor_dashboard' %}">Dashboard</a></li>
+            <li>
+                <form method="post" action="{% url 'logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main-content">
+    <h1>Welcome, {{ user.username }}</h1>
+    <section class="donor-info card">
+        <h2>Your Information</h2>
+        <p><strong>Blood Group:</strong> {{ donor.blood_group }}</p>
+        <p><strong>Organ Type:</strong> {{ donor.organ_type }}</p>
+        <p><strong>Date of Birth:</strong> {{ donor.date_of_birth }}</p>
+        <p><strong>Health Status:</strong> {{ donor.health_status }}</p>
+        <p><strong>Date Registered:</strong> {{ donor.date_registered }}</p>
+    </section>
+
+    <section class="actions card">
+        <h2>Actions</h2>
+        <ul class="action-list">
+            <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+            <li><a href="{% url 'organ_search' %}">Search for Recipients</a></li>
+            <li><a href="{% url 'feedback' %}">Provide Feedback</a></li>
+        </ul>
+    </section>
+</main>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+    <p>&copy; 2024 Online Organ Donation System</p>
+</footer>
+{% endblock %}

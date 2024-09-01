@@ -1,0 +1,21 @@
+<!-- templates/logout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>You have been logged out</h1>
+    <p><a href="{% url 'login' %}">Login again</a></p>
+    <p><a href="{% url 'home' %}">Return to Home</a></p>
+</body>
+</html>
+
+<!-- In a template where you want to include the logout button -->
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
