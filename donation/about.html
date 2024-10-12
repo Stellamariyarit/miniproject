@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+About Us
+{% endblock %}
+ 
+{% block content %}
+<header>
+    <h1>About Us</h1>
+</header>
+
+<style>
+    /* General styles */
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background: url("{% static 'images/don3.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        background-color: #f9f9f9; /* Fallback color */
+    }
+
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header styles */
+    header {
+        background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
+        color: white;
+        padding: 20px 0;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5em;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
+
+    /* Main content styles */
+    main {
+        padding: 20px 0;
+    }
+
+    section {
+        margin-bottom: 20px;
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2 {
+        font-size: 2em;
+        color: #007BFF;
+    }
+
+    section p {
+        font-size: 1.1em;
+        margin: 10px 0;
+    }
+
+    /* Contact section */
+    .contact a {
+        color: #007BFF;
+    }
+
+    .contact a:hover {
+        text-decoration: underline;
+    }
+
+    /* Footer styles */
+    footer {
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    footer p {
+        margin: 0;
+    }
+</style>
+
+<main>
+    <section>
+        <h2>Welcome to Our Organ Donation System</h2>
+        <p>
+            Our organ donation system is dedicated to facilitating the donation and transplantation of organs to those in need.
+            We aim to connect donors with recipients efficiently and compassionately.
+        </p>
+    </section>
+
+    <section>
+        <h2>Our Mission</h2>
+        <p>
+            Our mission is to save lives by improving the organ donation process and increasing awareness about the importance of organ donation.
+            We are committed to providing a seamless and user-friendly platform for donors and recipients alike.
+        </p>
+    </section>
+
+    <section>
+        <h2>Our Vision</h2>
+        <p>
+            Our vision is to create a world where organ donation is a norm, and everyone in need of a transplant receives it on time. 
+            We strive to build a community of donors who are empowered to give the gift of life, and to make organ shortages a thing of the past.
+        </p>
+    </section>
+</main>
+
+{% endblock %}
