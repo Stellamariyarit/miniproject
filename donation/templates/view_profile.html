@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Donor Profile</h1>
+    <div class="card">
+        <h2>Your Information</h2>
+        <p><strong>Blood Group:</strong> {{ donor.blood_group }}</p>
+        <p><strong>Organ Type:</strong> {{ donor.organ_type }}</p>
+        <p><strong>Date of Birth:</strong> {{ donor.date_of_birth }}</p>
+        <p><strong>Health Status:</strong> {{ donor.health_status }}</p>
+        <p><strong>Date Registered:</strong> {{ donor.date_registered }}</p>
+        {% if donor.profile_picture %}
+            <p><strong>Uploaded Document:</strong></p>
+            <img src="{{ donor.profile_picture.url }}" alt="Document" width="200px">
+        {% else %}
+            <p>No document uploaded.</p>
+        {% endif %}
+        <a href="{% url 'edit_profile' %}">Edit Profile</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,84 +1,121 @@
 {% block content %}
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
+    header {
+        background-color: #0044cc;
+        color: white;
+    }
 
-header {
-    background-color: #0044cc;
-    color: white;
-}
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-}
+    .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 15px;
+    }
 
-.nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 15px;
-}
+    .nav-list li {
+        display: inline;
+    }
 
-.nav-list li {
-    display: inline;
-}
+    .nav-list a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-.nav-list a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
+    .logout-form {
+        margin: 0;
+    }
 
-.logout-form {
-    margin: 0;
-}
+    .logout-button {
+        background-color: #cc0000;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
 
-.logout-button {
-    background-color: #cc0000;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+    .logout-button:hover {
+        background-color: #a30000;
+    }
 
-.logout-button:hover {
-    background-color: #a30000;
-}
+    .main-content {
+        padding: 20px;
+    }
 
-.main-content {
-    padding: 20px;
-}
+    .card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 10px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-.card {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
 
-footer {
-    background-color: #0044cc;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-}
+    table, th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #0044cc;
+        color: white;
+    }
+
+    td {
+        background-color: #f9f9f9;
+    }
+
+    footer {
+        background-color: #0044cc;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    form input, form select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+    }
+
+    form button {
+        background-color: #0044cc;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #003399;
+    }
 </style>
 
 <header>
     <nav class="navbar">
         <ul class="nav-list">
-            <li><a href="{% url 'doctor_profile' %}">Profile</a></li>
-            <li><a href="{% url 'view_patients' %}">View Patients</a></li>
-            <li><a href="{% url 'schedule_appointments' %}">Schedule Appointments</a></li>
+             
+             
             <li>
                 <form method="post" action="{% url 'logout' %}" class="logout-form">
                     {% csrf_token %}
@@ -99,29 +136,97 @@ footer {
         <p>Latest notifications: <strong>{{ notifications }}</strong></p>
     </section>
 
-    <!-- Patient Management Section -->
-    <section class="patient-management card">
-        <h2>Patient Management</h2>
-        <p><a href="{% url 'view_patients' %}">View all patients</a></p>
+    <!-- Donors Table -->
+    <section class="donors-table card">
+        <h2>Donor Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Blood Group</th>
+                    <th>Organ Type</th>
+                    <th>Date of Birth</th>
+                    <th>Health Status</th>
+                    <th>Date Registered</th>
+                    <th>Uploaded Document</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for donor in donors %}
+                <tr>
+                    <td>{{ donor.user.get_full_name }}</td>
+                    <td>{{ donor.blood_group }}</td>
+                    <td>{{ donor.organ_type }}</td>
+                    <td>{{ donor.date_of_birth }}</td>
+                    <td>{{ donor.health_status }}</td>
+                    <td>{{ donor.date_registered }}</td>
+                    <td>
+                        {% if donor.profile_picture %}
+                        <a href="{{ donor.profile_picture.url }}" target="_blank">View Document</a>
+                        {% else %}
+                        No document uploaded
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Recipients Table -->
+    <section class="recipients-table card">
+        <h2>Recipient Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Organ Needed</th>
+                    <th>Blood Group</th>
+                    <th>Health Condition</th>
+                    <th>Date Registered</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipient in recipients %}
+                <tr>
+                    <td>{{ recipient.user.get_full_name }}</td>
+                    <td>{{ recipient.organ_needed }}</td>
+                    <td>{{ recipient.blood_group }}</td>
+                    <td>{{ recipient.health_condition }}</td>
+                    <td>{{ recipient.date_registered }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
 
     <!-- Appointments Section -->
     <section class="appointments card">
-        <h2>Appointments</h2>
-        <p><a href="{% url 'schedule_appointments' %}">Schedule a new appointment</a></p>
-    </section>
-
-    <!-- Profile Management Section-->
-    <!--section class="profile-management card">
-        <h2>Profile Management</h2>
-        <form method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+        <h2>Schedule a New Appointment</h2>
+        <form method="post">
             {% csrf_token %}
-            <label for="profile_picture">Upload Profile Picture:</label>
-            <input type="file" id="profile_picture" name="profile_picture" accept="image/*"> <!-- Accepts only images -->
-            
-            <!--input type="submit" value="Update Profile">
+            <div class="form-group">
+                <label for="patient">Select Patient:</label>
+                <select name="patient" id="patient" required>
+                    {% for patient in patients %}
+                    <option value="{{ patient.id }}">{{ patient.name }} ({{ patient.blood_group }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="appointment_date">Appointment Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="appointment_time">Appointment Time:</label>
+                <input type="time" id="appointment_time" name="appointment_time" required>
+            </div>
+
+            <button type="submit">Schedule Appointment</button>
         </form>
-    </section-->
+    </section>
 </main>
 
 {% endblock %}
