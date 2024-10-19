@@ -1,14 +1,14 @@
-{% extends "base.html" %}
-
-{% block content %}
-<div class="container">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+</head>
+<body>
     <h1>Edit Profile</h1>
-    <div class="card">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}  <!-- This renders the form fields -->
-            <input type="submit" value="Update Information">
-        </form>
-    </div>
-</div>
-{% endblock %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>
