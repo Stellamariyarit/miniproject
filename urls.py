@@ -6,7 +6,8 @@ from .views import donor_login, recipient_login, doctor_login
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import donor_signup  # Assuming the view is named donor_signup
- 
+#from .views import recipient_dashboard  # Assuming the view is named donor_signup
+
  
 
 
@@ -24,6 +25,8 @@ urlpatterns = [
     #path('signup/donor/', views.donor_signup, name='donor_signup'),
 
     path('donor/signup/', donor_signup, name='donorsignup'),
+    path('recipient/signup/', recipient_signup, name='recipientsignup'),
+
 
     #path('recipient/signup/', recipient_signup, name='recipientsignup'),
 
@@ -45,6 +48,7 @@ urlpatterns = [
     #path('doctor/login/', views.doctor_login, name='doclogin'),  # Ensure this is defined
     #path('recipient/signup/', views.recipient_signup, name='recipientsignup'),
     path('recipient/login/', views.recipient_login, name='recipientlogin'),
+    #path('recipient_dashboard/', recipient_dashboard, name='recipient_dashboard'),
 
 
     #path('recipient/signup/reclogin/', recipient_login, name='recipient_login'),  # Adjust as needed
@@ -57,17 +61,19 @@ urlpatterns = [
     path('recipient_login/', views.recipient_login, name='recipient_login'),
     path('doctor_login/', views.doctor_login, name='doctor_login'),
     path('logout/', views.logout_view, name='logout'),
-    path('edit_profile/', views.edit_profile, name='edit_profile'),
-    path('update_health_status/', views.update_health_status, name='update_health_status'),
-    path('check_organ_demand/', views.check_organ_demand, name='check_organ_demand'),
     #path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('update_health_status/', views.update_health_status, name='update_health_status'),
+    #path('check_organ_demand/', views.check_organ_demand, name='check_organ_demand'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('organ_demand/', organ_demand, name='organ_demand'),
-    path('donation/success/', views.donation_statistics, name='donation_statistics'),
+    #path('donation/success/', views.donation_statistics, name='donation_statistics'),
     path('login/', views.login_view, name='login'),  # Ensure this exists
 
     path('view_profile/', views.view_profile, name='view_profile'),
     path('feedback/', views.feedback, name='feedback'),  # URL for the feedback page
     path('feedback/submit/', views.submit_feedback, name='submit_feedback'),  # URL for submitting feedback
+    #path('recipient/submit/', views.submit_recipient, name='submit_recipient'),  # URL for submitting feedback
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
  
