@@ -38,18 +38,27 @@
             <li class="nav-item active">
               <a class="nav-link text-white" href="{% url 'home' %}">Home </a>
             </li>
+
+           <li class="nav-item active">
+              <a class="nav-link text-white" href="{% url 'donorsignup' %}">Are you a Donor?Register here </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="{% url 'recipientsignup' %}">Are you a Recipient?Register here </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link text-white" href="{% url 'doctorsignup' %}">Doctors </a>
+            </li>
+           
+           
             <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'about' %}">About</a>
+              <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'feedback' %}">Feedback</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
-            </li>
-			 <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'signup' %}">Signup</a>
-            </li>
+             
             <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
             </li>
@@ -61,8 +70,9 @@
 
     {% block content %}{% endblock %}
     
-	
-	
+
+
+
     <section class="fixed-bottom">
       <footer class="pt-2 pb-2  bg-primary text-light">
         <div class="container">
