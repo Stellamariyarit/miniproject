@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipient Signup</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Centering the form */
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Recipient Signup</h1>
+        <form method="POST" action="{% url 'recipient_signup' %}">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ recipient_form.as_p }}
+            <button type="submit">Signup</button>
+        </form>
+
+        <!-- Displaying error messages -->
+        {% if user_form.non_field_errors %}
+            <div class="error">{{ user_form.non_field_errors }}</div>
+        {% endif %}
+        {% if recipient_form.non_field_errors %}
+            <div class="error">{{ recipient_form.non_field_errors }}</div>
+        {% endif %}
+        <!-- Add a login link for users who already have an account -->
+<div class="login-link">
+    Already have an account? <a href="{% url 'login' %}">Login here</a>.
+</div>
+    </div>
+</body>
+</html>

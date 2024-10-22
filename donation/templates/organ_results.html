@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organ Search Results</title>
+</head>
+<body>
+    <h1>Matching Donors</h1>
+    
+    {% if donors %}
+        <ul>
+            {% for donor in donors %}
+                <li>{{ donor.name }} - {{ donor.organ_type }} (Blood Group: {{ donor.blood_group }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No matching donors found.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Organ Demand</title>
+</head>
+<body>
+    <h1>Available Organs</h1>
+    <ul>
+        {% for organ in available_organs %}
+            <li>
+                <strong>Organ Type:</strong> {{ organ.organ_type }}<br>
+                <strong>Requested By:</strong> {{ organ.requested_by }}<br>
+                <strong>Priority Level:</strong> {{ organ.priority_level }}<br>
+            </li>
+        {% empty %}
+            <li>No available organs at the moment.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

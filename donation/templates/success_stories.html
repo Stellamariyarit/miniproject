@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories</title>
+    {% load static %} <!-- Load the static template tag library -->
+    <link rel="stylesheet" href="{% static 'style.css' %}"> <!-- Adjust path as necessary -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .story {
+            background-color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .story img {
+            border-radius: 8px;
+            margin-right: 20px;
+            width: 150px; /* Adjust size as needed */
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: relative; /* Adjusted from fixed to relative */
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body> 
+
+<header>
+    <h1>Success Stories</h1>
+</header>
+    <!-- Navigation bar with Home link -->
+    <div class="navbar">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+    </div>
+
+<div class="container">
+    <h2>Inspiring Stories from Donors and Recipients</h2>
+
+    <div class="story">
+        <img src="{% static 'images/success_story1.jpg' %}" alt="John's Success Story">
+        <div>
+            <h3>John's Journey</h3>
+            <p>After receiving a kidney transplant from a living donor, John is now leading a healthy and active life. He advocates for organ donation and encourages others to consider donating.</p>
+        </div>
+    </div>
+
+    <div class="story">
+        <img src="{% static 'images/success_story3.jpg' %}" alt="Emma's Success Story">
+        <div>
+            <h3>Emma's New Heart</h3>
+            <p>Emma received a heart transplant and has been able to return to her passion for running. She shares her story to raise awareness about the importance of organ donation.</p>
+        </div>
+    </div>
+
+    <div class="story">
+        <img src="{% static 'images/success_story2.jpg' %}" alt="Mike's Journey">
+        <div>
+            <h3>Mike's Second Chance</h3>
+            <p>Mike was diagnosed with liver failure and received a transplant that changed his life. He now volunteers with local organizations to support other transplant patients.</p>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 Online Organ Donation System</p>
+</footer>
+
+</body>
+</html>

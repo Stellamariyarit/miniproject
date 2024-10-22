@@ -1,0 +1,23 @@
+<form method="post">
+    {% csrf_token %}
+    <label for="required_organ">Required Organ:</label>
+    <input type="text" id="required_organ" name="required_organ" required>
+
+    <label for="blood_group">Blood Group:</label>
+    <input type="text" id="blood_group" name="blood_group" required>
+
+    <input type="submit" value="Search">
+</form>
+
+{% if donors %}
+    <h2>Matching Donors:</h2>
+    <ul>
+        {% for donor in donors %}
+            <li>{{ donor.user.username }} - Blood Group: {{ donor.blood_group }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+ 
