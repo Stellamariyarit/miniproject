@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipient Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 400px; /* Set max width for form container */
+            margin: 50px auto; /* Center the container */
+            background-color: white; /* White background for form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 20px; /* Padding inside the container */
+        }
+
+        h1 {
+            color: #333; /* Dark gray color for the heading */
+            text-align: center; /* Center the heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column; /* Stack form elements vertically */
+        }
+
+        label {
+            margin-bottom: 5px; /* Space between label and input */
+            font-weight: bold; /* Bold text for labels */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            padding: 10px; /* Padding for input fields */
+            margin-bottom: 15px; /* Space below input fields */
+            border: 1px solid #ccc; /* Border for input fields */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+            width: 100%; /* Full width for inputs */
+        }
+
+        button {
+            padding: 10px; /* Padding for button */
+            background-color: #28a745; /* Green background for button */
+            color: white; /* White text for button */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 16px; /* Font size */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                width: 90%; /* Responsive width on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Edit Recipient Profile</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

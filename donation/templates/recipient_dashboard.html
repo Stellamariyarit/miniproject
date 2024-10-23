@@ -121,36 +121,35 @@
             </ul>
         </div>
 
-                <!-- Organ Request Status -->
-        <h2>Your Organ Requests</h2>
-        <div class="info-section">
-            <ul>
-                {% for request in organ_requests %}
-                    <li>{{ request.organ_type }} - Requested on: {{ request.request_date }} - Status: {{ request.status }}</li>
-                        {% empty %}
-                            <li>No organ requests found.</li>
-                        {% endfor %}
-            </ul>
-        </div>
-
-        <!-- Available Organ Donations -->
-        <h2>Available Organ Donations</h2>
-        <div class="info-section">
-            <ul>
-                {% for donation in available_donations %}
-                    <li>Organ: {{ donation.organ_type }} - Donor: {{ donation.donor.user.username }} - Date: {{ donation.donation_date }}</li>
-                {% empty %}
-                    <li>No available organ donations at the moment.</li>
-                {% endfor %}
-            </ul>
+   
+        <!-- Available Donors Section -->
+        <div class="available-donors-section">
+            <h2>Available Donors for Organ Donation</h2>
+            {% if available_donors %}
+                <ul>
+                    {% for donor in available_donors %}
+                        <li>
+                            <p><strong>Donor Username:</strong> {{ donor.user.username }}</p>
+                            <p><strong>Email:</strong> {{ donor.user.email }}</p>
+                            <p><strong>Organ Type:</strong> {{ donor.organ_type }}</p>
+                            <p><strong>Blood Group:</strong> {{ donor.blood_group }}</p>
+                            <p><strong>Health Status:</strong> {{ donor.health_status }}</p>
+                            <p><strong>Availability:</strong> Available for donation</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No donors available for donation at the moment.</p>
+            {% endif %}
         </div>
 
         <!-- Actions -->
         <h3>Your Actions</h3>
         <ul class="action-list">
-            <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+            <li><a href="{% url 'edit_recipient_profile' %}">Edit Profile</a></li>
             <li><a href="{% url 'request_organ' %}">Request an Organ</a></li>
          </ul>
     </div>
 </body>
+
 </html>

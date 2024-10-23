@@ -145,31 +145,40 @@
         <div class="info-section">
             <p><strong>Email:</strong> {{ donor.user.email }}</p>
             <p><strong>Health Status:</strong> {{ donor.health_status }}</p>
+            <p><strong>Organ Type:</strong> {{ donor.organ_type }}</p>
+            <p><strong>Blood Group:</strong> {{ donor.blood_group }}</p>
         </div>
         
+        <!-- Availability Section -->
+        <h3>Your Availability</h3>
+        <p>You are currently: 
+            {% if donor.availability %}
+                <strong>Available</strong> for donation.
+            {% else %}
+                <strong>Unavailable</strong> for donation.
+            {% endif %}
+        </p>
+
+        <!-- Toggle Availability Button -->
+        <form method="POST" action="{% url 'toggle_availability' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">
+                {% if donor.availability %}
+                    Mark Unavailable
+                {% else %}
+                    Mark Available
+                {% endif %}
+            </button>
+        </form>
+
         <!-- Actions -->
         <h3>Your Actions</h3>
         <ul class="action-list">
-            <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
- 
+            <li><a href="{% url 'edit_donor_profile' %}">Edit Profile</a></li>
+            <li><a href="{% url 'donation_history' %}">View Donation History</a></li>
+            <li><a href="{% url 'toggle_availability' %}">Toggle Organ Availability</a></li>
         </ul>
-        <h3>Your Organ Requests</h3>
-<ul>
-    {% for request in organ_requests %}
-        <li>{{ request.organ_type }} - {{ request.request_date }} - Status: {{ request.status }}</li>
-    {% empty %}
-        <li>No organ requests found.</li>
-    {% endfor %}
-</ul>
-
-<h3>Your Donation History</h3>
-<ul>
-    {% for donation in donations %}
-        <li>{{ donation.organ_type }} - {{ donation.donation_date }}</li>
-    {% empty %}
-        <li>No donation history found.</li>
-    {% endfor %}
-</ul>
     </div>
 </body>
+
 </html>

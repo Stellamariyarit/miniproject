@@ -1,0 +1,27 @@
+<body>
+    <div class="available-donors-container">
+        <h2>Available Donors</h2>
+
+        {% if available_donors %}
+            <ul>
+                {% for donor in available_donors %}
+                    <li>
+                        <p><strong>Donor:</strong> {{ donor.user.username }}</p>
+                        <p><strong>Email:</strong> {{ donor.user.email }}</p>
+                        <p><strong>Organ Type:</strong> {{ donor.organ_type }}</p>
+                        <p><strong>Blood Group:</strong> {{ donor.blood_group }}</p>
+                        <p><strong>Availability:</strong> 
+                            {% if donor.availability %}
+                                <strong>Available for Donation</strong>
+                            {% else %}
+                                <strong>Unavailable</strong>
+                            {% endif %}
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No donors available at the moment.</p>
+        {% endif %}
+    </div>
+</body>
